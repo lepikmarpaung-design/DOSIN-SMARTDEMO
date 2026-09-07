@@ -14,31 +14,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Find and extract project ZIP if needed
-        shell: bash
-        run: |
-          set -e
-
-          if [ ! -f package.json ]; then
-            ZIP_FILE=$(find . -maxdepth 1 -type f -iname '*.zip' | head -n 1)
-
-            if [ -z "$ZIP_FILE" ]; then
-              echo "Project ZIP not found"
-              exit 1
-            fi
-
-            mkdir -p .project
-            unzip -q "$ZIP_FILE" -d .project
-
-            cp -r .project/* ./
-            cp -r .project/.[!.]* ./ 2>/dev/null || true
-          fi
-
-          test -f package.json
-          test -f app.json
-          test -f App.js
-
-      - name: Setup Node
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
@@ -49,13 +25,13 @@ jobs:
       - name: Generate Android project
         run: npx expo prebuild --platform android --non-interactive
 
-      - name: Build debug APK
+      - name: Build APK
         working-directory: android
         run: ./gradlew assembleDebug --no-daemon
 
-      - name: Upload APK
+      - name: Upload DOSIN SMART APK
         uses: actions/upload-artifact@v4
         with:
-          name: DOSIN-SMART-demo-apk
+          name: DOSIN-SMART-APK
           path: android/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
