@@ -1,0 +1,35 @@
+{
+  "expo": {
+    "name": "DOSIN SMART Demo",
+    "slug": "dosin-smart-demo",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "backgroundColor": "#FFF0F7",
+      "resizeMode": "contain"
+    },
+    "android": {
+      "package": "id.dosin.smart.demo",
+      "versionCode": 1,
+      "adaptiveIcon": {
+        "backgroundColor": "#FFF0F7"
+      },
+      "permissions": [
+        "INTERNET"
+      ]
+    },
+    "ios": {
+      "bundleIdentifier": "id.dosin.smart"
+    },
+    "plugins": [
+      "expo-document-picker"
+    ],
+    "extra": {
+      "environment": "production",
+      "appName": "DOSIN SMART",
+      "serviceFlow": "citizen-to-village-admin"
+    },
+    "description": "DOSIN SMART - Demo Offline"
+  }
+}
